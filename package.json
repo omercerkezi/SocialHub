@@ -1,0 +1,21 @@
+{
+  "name": "socialhub",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Personal desk for planning and simulating social posts across brands.",
+  "workspaces": [
+    "apps/api",
+    "apps/web",
+    "packages/contracts"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w @socialhub/api",
+    "dev:web": "npm run dev -w @socialhub/web",
+    "build": "npm run build -w @socialhub/api && npm run build -w @socialhub/web",
+    "test": "npm run test -w @socialhub/api && node scripts/check-copy.mjs",
+    "db:studio": "npm run db:studio -w @socialhub/api"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
