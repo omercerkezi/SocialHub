@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-31T14:50:00.000Z",
+  "title": "Design System: SocialHub",
+  "extensions": {
+    "colorMeta": {
+      "stamp-blue": { "role": "primary", "displayName": "Stamp blue", "canonical": "#0e6e7a" },
+      "stamp-ink": { "role": "primary", "displayName": "Stamp ink", "canonical": "#083e48" },
+      "manila": { "role": "tertiary", "displayName": "Manila", "canonical": "#f4e7cf" },
+      "ground": { "role": "neutral", "displayName": "Ground", "canonical": "#f4f8f9" },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#142026" }
+    },
+    "typographyMeta": {
+      "title": { "displayName": "Title", "purpose": "Page heading and the due-slip title." },
+      "headline": { "displayName": "Headline", "purpose": "Panel headings." },
+      "body": { "displayName": "Body", "purpose": "Sentences at 14px." },
+      "label": { "displayName": "Label", "purpose": "Field names and meta. Floor is 12px." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "press", "value": "transform 150ms ease-out", "purpose": "Scale a button to 0.96 on press when reduced motion is not requested." }
+    ],
+    "breakpoints": [
+      { "name": "desk", "value": "960px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one next action on a screen.",
+      "html": "<button class=\"ds-btn-primary\">New post</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 14px; border-radius: 6px; border: 1px solid #142026; background: #142026; color: #ffffff; font-family: \"DM Sans\", \"Segoe UI\", sans-serif; font-size: 14px; }"
+    },
+    {
+      "name": "Due slip",
+      "kind": "custom",
+      "refersTo": "due-slip",
+      "description": "The next scheduled slot, the only manila object.",
+      "html": "<article class=\"ds-slip\"><p>Furnio</p><h2>Finish comparison</h2><p class=\"ds-stamp\"><span>Scheduled</span><span>This slot will be simulated. Nothing is sent.</span></p></article>",
+      "css": ".ds-slip { background: #f4e7cf; border: 1px solid #e3d3b0; border-radius: 8px; padding: 24px; min-height: 280px; font-family: \"DM Sans\", \"Segoe UI\", sans-serif; color: #142026; } .ds-slip h2 { font-size: 24px; font-weight: 600; margin: 8px 0; } .ds-stamp { display: grid; width: max-content; gap: 4px; padding: 8px 12px; border: 1px solid #0e6e7a; border-radius: 6px; color: #083e48; font-weight: 600; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Library due-date card",
+    "overview": "An open working plane with one manila card for the next slot. Stamp blue is rare. Simulations are labeled as simulations.",
+    "keyCharacteristics": [
+      "Open plane, 24px rhythm",
+      "Manila due slip",
+      "Stamp blue on the stamp, the chart, and the active icon",
+      "Flat surfaces",
+      "Simulated results say nothing was sent"
+    ],
+    "rules": [
+      { "name": "The One Hue Rule", "body": "Charts use stamp blue only. A failed day is named in a sentence.", "section": "colors" },
+      { "name": "The Sentence Rule", "body": "Status and empty states are sentences. Headers are not uppercase.", "section": "typography" }
+    ],
+    "dos": [
+      "Do keep manila on the next-slot card only.",
+      "Do say Simulated success or Simulated failure."
+    ],
+    "donts": [
+      "Don't label a simulation as Published.",
+      "Don't use a resting drop shadow, a saturated sidebar, or type below 12px."
+    ]
+  }
+}
