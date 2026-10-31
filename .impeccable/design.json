@@ -1,27 +1,40 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-31T14:50:00.000Z",
+  "generatedAt": "2026-10-31T15:10:00.000Z",
   "title": "Design System: SocialHub",
   "extensions": {
     "colorMeta": {
-      "stamp-blue": { "role": "primary", "displayName": "Stamp blue", "canonical": "#0e6e7a" },
-      "stamp-ink": { "role": "primary", "displayName": "Stamp ink", "canonical": "#083e48" },
-      "manila": { "role": "tertiary", "displayName": "Manila", "canonical": "#f4e7cf" },
-      "ground": { "role": "neutral", "displayName": "Ground", "canonical": "#f4f8f9" },
-      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#142026" }
+      "accent": { "role": "primary", "displayName": "Stamp teal", "canonical": "#0e6e7a", "tonalRamp": ["#062a30", "#083e48", "#0b5a64", "#0e6e7a", "#3f8f99", "#8cc5cc", "#c5e3e8", "#e3f2f4"] },
+      "rail": { "role": "neutral", "displayName": "Rail ink", "canonical": "#0f2b31", "tonalRamp": ["#081a1e", "#0f2b31", "#163840", "#24464e", "#4b6a71", "#9dbcc2", "#cfe3e6", "#e3eef0"] },
+      "manila": { "role": "tertiary", "displayName": "Manila", "canonical": "#f6ead2", "tonalRamp": ["#3f2a09", "#6a4710", "#8f6420", "#b9822a", "#d6b37a", "#e4d1a8", "#f6ead2", "#fbf5ea"] },
+      "ground": { "role": "neutral", "displayName": "Cool paper", "canonical": "#f4f6f7", "tonalRamp": ["#13222a", "#46585f", "#5f7178", "#7f9096", "#d3dcdf", "#e2e8ea", "#f0f3f4", "#f4f6f7"] },
+      "text": { "role": "neutral", "displayName": "Ink", "canonical": "#13222a" },
+      "positive": { "role": "status", "displayName": "Live green", "canonical": "#1d8a57" },
+      "negative": { "role": "status", "displayName": "Failure red", "canonical": "#c8303e" },
+      "warning": { "role": "status", "displayName": "Partial amber", "canonical": "#c77d16" }
     },
     "typographyMeta": {
-      "title": { "displayName": "Title", "purpose": "Page heading and the due-slip title." },
+      "display": { "displayName": "Display", "purpose": "The day number in the due slip's date block." },
+      "figure": { "displayName": "Figure", "purpose": "KPI counts and the week total, tabular figures." },
+      "title": { "displayName": "Title", "purpose": "Page headings." },
+      "slip-title": { "displayName": "Slip title", "purpose": "The due slip's post title." },
       "headline": { "displayName": "Headline", "purpose": "Panel headings." },
-      "body": { "displayName": "Body", "purpose": "Sentences at 14px." },
-      "label": { "displayName": "Label", "purpose": "Field names and meta. Floor is 12px." }
+      "body": { "displayName": "Body", "purpose": "Sentences and table cells." },
+      "small": { "displayName": "Small", "purpose": "Row titles, event titles, dense button labels." },
+      "label": { "displayName": "Label", "purpose": "Field labels, meta, badges, tab bar. The floor is 12px." }
     },
-    "shadows": [],
+    "shadows": [
+      { "name": "float", "value": "0 8px 24px -6px rgb(15 43 49 / 0.18), 0 2px 6px rgb(15 43 49 / 0.08)", "purpose": "Sticky run bar, skip link, and overlays only. Resting panels are flat." }
+    ],
     "motion": [
-      { "name": "press", "value": "transform 150ms ease-out", "purpose": "Scale a button to 0.96 on press when reduced motion is not requested." }
+      { "name": "press", "value": "transform 150ms ease-out", "purpose": "Scale a button to 0.96 on press when reduced motion is not requested." },
+      { "name": "state", "value": "150ms ease-out on named properties", "purpose": "Background, border, and colour changes. Layout is never animated." },
+      { "name": "skeleton", "value": "opacity 1.4s ease-in-out infinite alternate", "purpose": "Loading rows pulse between 1 and 0.45. Off under reduced motion." }
     ],
     "breakpoints": [
-      { "name": "desk", "value": "960px" }
+      { "name": "wide", "value": "1180px" },
+      { "name": "desk", "value": "960px" },
+      { "name": "phone", "value": "640px" }
     ]
   },
   "components": [
@@ -29,40 +42,92 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The one next action on a screen.",
-      "html": "<button class=\"ds-btn-primary\">New post</button>",
-      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 0 14px; border-radius: 6px; border: 1px solid #142026; background: #142026; color: #ffffff; font-family: \"DM Sans\", \"Segoe UI\", sans-serif; font-size: 14px; }"
+      "description": "The one next action on a view.",
+      "html": "<button class=\"ds-btn-primary\">Run simulation</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px; border-radius: 6px; border: 1px solid #0e6e7a; background: #0e6e7a; color: #ffffff; font: 500 14px \"DM Sans\", \"Segoe UI\", sans-serif; transition-property: background-color, transform; transition-duration: 150ms; transition-timing-function: ease-out; } .ds-btn-primary:hover { background: #0b5a64; } .ds-btn-primary:active { transform: scale(0.96); } .ds-btn-primary:focus-visible { outline: 2px solid #0e6e7a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Every other action.",
+      "html": "<button class=\"ds-btn\">Save draft</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 6px; border: 1px solid #d3dcdf; background: #ffffff; color: #13222a; font: 500 14px \"DM Sans\", \"Segoe UI\", sans-serif; transition-property: background-color, border-color, transform; transition-duration: 150ms; transition-timing-function: ease-out; } .ds-btn:hover { background: #f0f3f4; border-color: #7f9096; } .ds-btn:active { transform: scale(0.96); } .ds-btn:focus-visible { outline: 2px solid #0e6e7a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Text input with a label above.",
+      "html": "<label class=\"ds-field\"><span>Name</span><input placeholder=\"Only you see this name\"></label>",
+      "css": ".ds-field { display: grid; gap: 6px; font: 500 12px \"DM Sans\", \"Segoe UI\", sans-serif; color: #46585f; } .ds-field input { min-height: 36px; padding: 7px 10px; border: 1px solid #7f9096; border-radius: 6px; background: #ffffff; color: #13222a; font: 400 14px \"DM Sans\", \"Segoe UI\", sans-serif; transition: border-color 150ms ease-out, box-shadow 150ms ease-out; } .ds-field input:focus-visible { outline: none; border-color: #0e6e7a; box-shadow: 0 0 0 3px #c5e3e8; }"
+    },
+    {
+      "name": "Rail navigation",
+      "kind": "nav",
+      "refersTo": "rail",
+      "description": "The dark ink sidebar list.",
+      "html": "<nav class=\"ds-rail\"><a class=\"on\">Today's run</a><a>Calendar</a><a>Posts</a></nav>",
+      "css": ".ds-rail { display: grid; gap: 2px; width: 220px; padding: 12px; background: #0f2b31; border-radius: 10px; font: 500 14px \"DM Sans\", \"Segoe UI\", sans-serif; } .ds-rail a { padding: 8px 10px; border-radius: 6px; color: #9dbcc2; transition: background-color 150ms ease-out, color 150ms ease-out; } .ds-rail a:hover { background: rgb(255 255 255 / 0.06); color: #ffffff; } .ds-rail a.on { background: rgb(255 255 255 / 0.1); color: #ffffff; }"
+    },
+    {
+      "name": "Status badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "A dot and a word. Never colour alone.",
+      "html": "<span class=\"ds-badge\"><i></i>Simulated success</span> <span class=\"ds-badge ds-failed\"><i></i>Simulated failure</span> <span class=\"ds-badge ds-scheduled\"><i></i>Scheduled</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px; border-radius: 999px; background: #e3f2f4; color: #083e48; font: 500 12px \"DM Sans\", \"Segoe UI\", sans-serif; } .ds-badge i { width: 6px; height: 6px; border-radius: 50%; background: #0e6e7a; } .ds-failed { background: #fdecec; color: #7a1620; } .ds-failed i { background: #c8303e; } .ds-scheduled { background: #f6ead2; color: #6a4710; } .ds-scheduled i { background: #b9822a; }"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "Flat white container with a hairline.",
+      "html": "<section class=\"ds-panel\"><h2>Needs a retry</h2><p>Tuesday list, Smart Leads, Sat 31 Oct.</p></section>",
+      "css": ".ds-panel { padding: 20px; background: #ffffff; border: 1px solid #e2e8ea; border-radius: 10px; font: 400 14px/1.5 \"DM Sans\", \"Segoe UI\", sans-serif; color: #13222a; } .ds-panel h2 { margin: 0 0 6px; font-size: 16px; font-weight: 600; }"
     },
     {
       "name": "Due slip",
       "kind": "custom",
       "refersTo": "due-slip",
       "description": "The next scheduled slot, the only manila object.",
-      "html": "<article class=\"ds-slip\"><p>Furnio</p><h2>Finish comparison</h2><p class=\"ds-stamp\"><span>Scheduled</span><span>This slot will be simulated. Nothing is sent.</span></p></article>",
-      "css": ".ds-slip { background: #f4e7cf; border: 1px solid #e3d3b0; border-radius: 8px; padding: 24px; min-height: 280px; font-family: \"DM Sans\", \"Segoe UI\", sans-serif; color: #142026; } .ds-slip h2 { font-size: 24px; font-weight: 600; margin: 8px 0; } .ds-stamp { display: grid; width: max-content; gap: 4px; padding: 8px 12px; border: 1px solid #0e6e7a; border-radius: 6px; color: #083e48; font-weight: 600; }"
+      "html": "<article class=\"ds-slip\"><div class=\"ds-date\"><span>Sun</span><b>1</b><span>Nov</span><em>09:00</em></div><div><h2>Finish comparison</h2><p>Oak, linen, and the dark stain, side by side.</p><p class=\"ds-stamp\"><strong>Scheduled</strong><span>This slot will be simulated. Nothing is sent.</span></p></div></article>",
+      "css": ".ds-slip { display: grid; grid-template-columns: 96px 1fr; gap: 20px; padding: 20px; background: #f6ead2; border: 1px solid #e4d1a8; border-radius: 10px; font-family: \"DM Sans\", \"Segoe UI\", sans-serif; color: #13222a; } .ds-date { display: grid; justify-items: center; align-content: center; gap: 2px; padding: 12px 8px; background: #ffffff; border-radius: 6px; color: #6a4710; font-size: 12px; font-weight: 500; } .ds-date b { font-size: 40px; line-height: 1; color: #13222a; font-variant-numeric: tabular-nums; } .ds-date em { font-style: normal; margin-top: 4px; padding: 1px 8px; border-radius: 999px; background: #e3f2f4; color: #083e48; } .ds-slip h2 { margin: 0 0 4px; font-size: 20px; font-weight: 600; } .ds-slip p { margin: 0; color: #46585f; font-size: 14px; } .ds-stamp { display: grid; width: max-content; gap: 2px; margin-top: 12px !important; padding: 6px 10px; border: 1px solid #0e6e7a; border-radius: 6px; background: #ffffff; color: #083e48 !important; font-size: 12px !important; }"
     }
   ],
   "narrative": {
-    "northStar": "Library due-date card",
-    "overview": "An open working plane with one manila card for the next slot. Stamp blue is rare. Simulations are labeled as simulations.",
+    "northStar": "The library desk",
+    "overview": "SocialHub is a working desk for one person running several brands. The shell is a dark ink rail on the left and a cool paper sheet on the right. One warm object sits on the sheet: the next slot, drawn as a manila library due-date slip with a date block, a stamp, and the file it will carry. Everything else is quiet white panels with hairline borders, so the slip and the status colours do the talking.",
     "keyCharacteristics": [
-      "Open plane, 24px rhythm",
-      "Manila due slip",
-      "Stamp blue on the stamp, the chart, and the active icon",
-      "Flat surfaces",
-      "Simulated results say nothing was sent"
+      "Dark ink rail with the brand switcher, navigation, simulation note, and user row",
+      "Cool paper ground with flat white panels and 1px hairlines",
+      "One manila due slip for the next slot",
+      "Status as a pill with a dot and a word, never colour alone",
+      "Network marks drawn as icons in their own tint, not as text labels",
+      "Thumbnails on every post row, so a list reads like a content queue",
+      "A bottom tab bar on phones"
     ],
     "rules": [
-      { "name": "The One Hue Rule", "body": "Charts use stamp blue only. A failed day is named in a sentence.", "section": "colors" },
-      { "name": "The Sentence Rule", "body": "Status and empty states are sentences. Headers are not uppercase.", "section": "typography" }
+      { "name": "The Quiet Sheet Rule", "body": "Panels stay white with hairlines. Colour belongs to status, networks, brand avatars, and the one manila slip.", "section": "colors" },
+      { "name": "The Sentence Rule", "body": "Status, empty states, and errors are full sentences. Headers are not uppercase and not tracked out. There is no eyebrow or kicker above a heading.", "section": "typography" }
     ],
     "dos": [
-      "Do keep manila on the next-slot card only.",
-      "Do say Simulated success or Simulated failure."
+      "Do keep manila for the due slip and the Scheduled status.",
+      "Do show every status as a dot and a word in a pill.",
+      "Do use network marks and brand avatars to make rows scannable.",
+      "Do say \"Simulated success\" or \"Simulated failure\" and that nothing was sent.",
+      "Do keep panels white and flat, with hairline borders.",
+      "Do give every list a skeleton, an empty state with an action, and an error notice.",
+      "Do gate hover styles behind (hover: hover) and name transitioned properties."
     ],
     "donts": [
-      "Don't label a simulation as Published.",
-      "Don't use a resting drop shadow, a saturated sidebar, or type below 12px."
+      "Don't label a simulation as Published, or write \"Published to Facebook\", \"Posted to Instagram\", or \"Live on TikTok\".",
+      "Don't put a kicker or eyebrow above a heading.",
+      "Don't use emoji or unicode glyphs as icons, gradient fills, gradient text, or glass cards.",
+      "Don't put a drop shadow on a resting panel. Shadows are for overlays and sticky bars.",
+      "Don't use a border-left accent stripe thicker than 1px.",
+      "Don't set interface text below 12px, or a page title above 24px.",
+      "Don't nest a card inside a card."
     ]
   }
 }

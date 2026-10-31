@@ -14,7 +14,7 @@ export function App() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
-      <Route element={token() ? <Shell /> : <Navigate to="/login" replace />}>
+      <Route element={<RequireSession />}>
         <Route index element={<Dashboard />} />
         <Route path="calendar" element={<Calendar />} />
         <Route path="posts" element={<Posts />} />
@@ -26,4 +26,8 @@ export function App() {
       </Route>
     </Routes>
   );
+}
+
+function RequireSession() {
+  return token() ? <Shell /> : <Navigate to="/login" replace />;
 }

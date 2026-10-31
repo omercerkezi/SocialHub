@@ -1,39 +1,73 @@
 ---
 name: SocialHub
-description: A personal publishing desk that marks every slot like a library due-date card.
+description: A publishing desk for several brands, with a dark ink rail, a cool paper sheet, and one manila due slip for the next slot.
 colors:
-  stamp-blue: "#0e6e7a"
-  stamp-ink: "#083e48"
-  stamp-soft: "#e6f3f5"
-  stamp-track: "#c5e3e8"
-  manila: "#f4e7cf"
-  manila-edge: "#e3d3b0"
-  ground: "#f4f8f9"
+  accent: "#0e6e7a"
+  accent-strong: "#0b5a64"
+  accent-soft: "#e3f2f4"
+  accent-track: "#c5e3e8"
+  accent-ink: "#083e48"
+  rail: "#0f2b31"
+  rail-raised: "#163840"
+  rail-text: "#e3eef0"
+  rail-muted: "#9dbcc2"
+  rail-accent: "#6fd0db"
+  manila: "#f6ead2"
+  manila-edge: "#e4d1a8"
+  manila-ink: "#6a4710"
+  manila-dot: "#b9822a"
+  ground: "#f4f6f7"
   surface: "#ffffff"
-  raised: "#e7eef0"
-  border: "#d5e0e3"
-  control-border: "#6d8288"
-  ink: "#142026"
-  muted: "#3d5158"
-  positive: "#146b43"
+  sunken: "#f0f3f4"
+  raised: "#e8edef"
+  border: "#e2e8ea"
+  border-strong: "#d3dcdf"
+  control-border: "#7f9096"
+  text: "#13222a"
+  muted: "#46585f"
+  subtle: "#5f7178"
+  positive: "#1d8a57"
   positive-soft: "#e5f6ee"
   positive-ink: "#0d4a2e"
-  negative: "#9d1c28"
-  negative-soft: "#fdecea"
-  negative-ink: "#6f1219"
-  warning: "#8a4b08"
-  warning-soft: "#fbf3e4"
+  negative: "#c8303e"
+  negative-soft: "#fdecec"
+  negative-edge: "#efc7cb"
+  negative-ink: "#7a1620"
+  warning: "#c77d16"
+  warning-soft: "#fbf1df"
   warning-ink: "#6b3a06"
+  network-facebook: "#1462c8"
+  network-instagram: "#b02a76"
+  network-linkedin: "#0a5cad"
+  network-tiktok: "#111111"
 typography:
+  display:
+    fontFamily: "DM Sans, Segoe UI, sans-serif"
+    fontSize: "40px"
+    fontWeight: 600
+    lineHeight: 1
+    letterSpacing: "-0.03em"
+  figure:
+    fontFamily: "DM Sans, Segoe UI, sans-serif"
+    fontSize: "28px"
+    fontWeight: 600
+    lineHeight: 1.1
+    letterSpacing: "-0.02em"
   title:
     fontFamily: "DM Sans, Segoe UI, sans-serif"
     fontSize: "24px"
     fontWeight: 600
     lineHeight: 1.2
+    letterSpacing: "-0.02em"
+  slip-title:
+    fontFamily: "DM Sans, Segoe UI, sans-serif"
+    fontSize: "20px"
+    fontWeight: 600
+    lineHeight: 1.25
     letterSpacing: "-0.01em"
   headline:
     fontFamily: "DM Sans, Segoe UI, sans-serif"
-    fontSize: "18px"
+    fontSize: "16px"
     fontWeight: 600
     lineHeight: 1.3
     letterSpacing: "-0.01em"
@@ -42,169 +76,276 @@ typography:
     fontSize: "14px"
     fontWeight: 400
     lineHeight: 1.5
+  small:
+    fontFamily: "DM Sans, Segoe UI, sans-serif"
+    fontSize: "13px"
+    fontWeight: 500
+    lineHeight: 1.4
   label:
     fontFamily: "DM Sans, Segoe UI, sans-serif"
     fontSize: "12px"
     fontWeight: 500
-    lineHeight: 1.4
+    lineHeight: 1.45
 rounded:
-  card: "8px"
+  xs: "4px"
   control: "6px"
+  card: "10px"
+  pill: "999px"
 spacing:
   gap: "24px"
-  pad: "16px"
-  slip: "24px"
+  panel: "20px"
+  row: "12px"
+  sidebar: "248px"
+  side-rail: "360px"
+  control-height: "36px"
 components:
   button-primary:
-    backgroundColor: "{colors.ink}"
+    backgroundColor: "{colors.accent}"
     textColor: "{colors.surface}"
     rounded: "{rounded.control}"
     padding: "0 14px"
-    height: "40px"
+    height: "36px"
   button-secondary:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.text}"
     rounded: "{rounded.control}"
     padding: "0 14px"
-    height: "40px"
+    height: "36px"
   panel:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.text}"
     rounded: "{rounded.card}"
-    padding: "16px"
+    padding: "20px"
   due-slip:
     backgroundColor: "{colors.manila}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.text}"
     rounded: "{rounded.card}"
-    padding: "24px"
+    padding: "20px"
   field:
     backgroundColor: "{colors.surface}"
-    textColor: "{colors.ink}"
+    textColor: "{colors.text}"
     rounded: "{rounded.control}"
-    padding: "8px 10px"
-    height: "40px"
+    padding: "0 10px"
+    height: "36px"
+  badge:
+    backgroundColor: "{colors.accent-soft}"
+    textColor: "{colors.accent-ink}"
+    rounded: "{rounded.pill}"
+    padding: "2px 8px"
+  rail:
+    backgroundColor: "{colors.rail}"
+    textColor: "{colors.rail-text}"
+    width: "248px"
 ---
 
 ## Overview
 
-SocialHub is a working desk for one person running several brands. The screen is an open plane: a quiet sidebar, a white sheet, and one warm object. That object is the next slot, drawn as a manila library due-date card. Stamp blue (`#0e6e7a`) appears on the card's stamp, the week's bars, and the active navigation icon. It is not a theme color for whole panels.
+**Creative North Star: "The library desk."**
 
-The direction came from the installed design skills, not from a generic dashboard kit. Taste dealt an accent-ladder working screen (seed 1712768588). The face uses the sheet's option to replace the dealt raspberry with the object's own hue, here the library stamp. Impeccable's assigned world is the library due-date card. Navigation and controls stay ordinary. Sample swatches in the library are generated color fields, not photographs.
+SocialHub is a working desk for one person running several brands. The shell is a dark ink rail on the left and a cool paper sheet on the right. One warm object sits on the sheet: the next slot, drawn as a manila library due-date slip with a date block, a stamp, and the file it will carry. Everything else is quiet white panels with hairline borders, so the slip and the status colours do the talking.
+
+The direction came from the installed design skills. UI UX Pro Max matched a Minimalism and Swiss style for a dense SaaS dashboard. Taste dealt an accent-ladder working screen. Impeccable's operate mode asked for a committed shell palette and one signature move, and the due slip is that move. The Krehel better-* skills set the interaction values: press scale, hover gating, named transitions, image hairlines, and spacing-based grouping.
 
 Publishing copy is part of the visual system. A simulation says "Simulated success" or "Simulated failure" and that nothing was sent. The word Published is reserved for a live provider that has confirmed a post.
 
+**Key Characteristics:**
+
+- Dark ink rail with the brand switcher, navigation, simulation note, and user row
+- Cool paper ground with flat white panels and 1px hairlines
+- One manila due slip for the next slot
+- Status as a pill with a dot and a word, never colour alone
+- Network marks drawn as icons in their own tint, not as text labels
+- Thumbnails on every post row, so a list reads like a content queue
+- A bottom tab bar on phones
+
 ## Colors
 
-The ground is a cool paper, slightly tinted toward the stamp. White panels sit on it with a quiet border. Manila is the only warm surface, and only the next-slot card uses it.
+### Shell
 
-### Primary
+- **Rail** (`#0f2b31`): the sidebar and the login side panel. Rail text (`#e3eef0`) is 12.59:1 on it. Rail muted (`#9dbcc2`) is 7.38:1.
+- **Rail raised** (`#163840`): the brand switcher and the "All brands" mark.
+- **Rail accent** (`#6fd0db`): the New post button in the rail, with rail ink as its label (8.31:1).
 
-- **Stamp blue** (`#0e6e7a`): the stamp outline, chart bars, and the active nav icon. Contrast on white is about 5.95:1.
-- **Stamp ink** (`#083e48`): text on the soft stamp wash (`#e6f3f5`), about 10.32:1.
+### Accent
+
+- **Accent** (`#0e6e7a`): primary buttons, focus rings, today markers, selected tiles, chart bars. White on it is 5.95:1.
+- **Accent soft** (`#e3f2f4`) with **accent ink** (`#083e48`): the simulated badge and notices, 10.19:1.
+- **Accent track** (`#c5e3e8`): focus halos and selected-tile rings.
 
 ### Neutral
 
-- **Ground** (`#f4f8f9`): the page. Body ink on it is about 15.54:1.
-- **Surface** (`#ffffff`): panels, inputs, and the primary button's label.
-- **Raised** (`#e7eef0`): the count row's quiet division, not a second card color.
-- **Border** (`#d5e0e3`): panel and row rules. It is intentionally quiet, about 1.35:1 on white.
-- **Control border** (`#6d8288`): inputs and secondary buttons, about 4.04:1 on white.
-- **Ink** (`#142026`): text and the primary button. On white, about 16.61:1.
-- **Muted** (`#3d5158`): secondary sentences. On white, about 8.35:1. On manila, about 6.83:1.
+- **Ground** (`#f4f6f7`): the page.
+- **Surface** (`#ffffff`): panels, inputs, cards.
+- **Sunken** (`#f0f3f4`): table headers, empty thumbs, segmented control tracks, skeletons.
+- **Border** (`#e2e8ea`) and **border strong** (`#d3dcdf`): panel hairlines and dashed "add" cards.
+- **Control border** (`#7f9096`): input strokes, 3.32:1 on white, above the 3:1 floor for interface components.
+- **Text** (`#13222a`, 16.28:1 on white), **muted** (`#46585f`, 7.44:1), **subtle** (`#5f7178`, 5.10:1 on white and 4.70:1 on ground).
+
+### Manila
+
+Manila (`#f6ead2`, edge `#e4d1a8`) is the due slip and the Scheduled status. Manila ink (`#6a4710`) is 6.99:1 on it. Manila dot (`#b9822a`) marks scheduled items.
 
 ### Status
 
-Status is never color alone. The stamp also carries the words Simulated success, Simulated failure, Scheduled, or Published.
+Every status is a pill with a dot and a word.
 
-- **Positive ink** (`#0d4a2e`) on `#e5f6ee`.
-- **Negative ink** (`#6f1219`) on `#fdecea`. The mark itself is `#9d1c28`.
-- **Warning ink** (`#6b3a06`) on `#fbf3e4`.
+| Status | Surface | Ink | Dot |
+| --- | --- | --- | --- |
+| Draft | sunken | muted | `#8a9aa0` |
+| Scheduled | manila | manila ink | manila dot |
+| Simulated success | accent soft | accent ink | accent |
+| Published (live only) | `#e5f6ee` | `#0d4a2e` | `#1d8a57` |
+| Failed | `#fdecec` | `#7a1620` | `#c8303e` |
+| Partial | `#fbf1df` | `#6b3a06` | `#c77d16` |
 
-**The One Hue Rule.** Charts use stamp blue only. A failed day is named in a sentence under the chart, not painted a second color inside the bars.
+### Networks
+
+Network marks use the network's own hue on a pale tint of it: Facebook `#1462c8` on `#e8f1fe` (5.11:1), Instagram `#b02a76` on `#fbe9f3` (5.25:1), LinkedIn `#0a5cad` on `#e6f0fa`, and TikTok `#111111` on `#e9ecee`. These hues appear only inside the network marks.
+
+### Brand avatars
+
+Each brand gets one of six muted hues (teal, amber, plum, moss, slate, rust), chosen from a hash of its name, so a brand keeps the same colour on every screen.
+
+**The Quiet Sheet Rule.** Panels stay white with hairlines. Colour belongs to status, networks, brand avatars, and the one manila slip.
 
 ## Typography
 
-**Body font:** DM Sans, with Segoe UI then sans-serif. The files are self-hosted from `@fontsource/dm-sans` at weights 400, 500, 600, and 700.
+**Font:** DM Sans, with Segoe UI then sans-serif. The files are self-hosted from `@fontsource/dm-sans` at weights 400, 500, 600, and 700. Counts, times, and dates use tabular figures.
 
-**Character:** A short working scale. Titles are 24px, not a hero. Figures match the title size and use a medium weight so the number does not shout.
+### Scale
 
-### Hierarchy
+- **Display** (600, 40px): the day number in the due slip's date block, 32px on phones.
+- **Figure** (600, 28px): KPI counts and the week total.
+- **Title** (600, 24px, -0.02em): page headings.
+- **Slip title** (600, 20px): the due slip's post title.
+- **Headline** (600, 16px): panel headings. Brand card names are 18px.
+- **Body** (400, 14px, line-height 1.5): sentences and table cells.
+- **Small** (500, 13px): row titles, event titles, button labels in dense bars.
+- **Label** (500, 12px): field labels, meta lines, badges, and tab bar labels.
 
-- **Title** (600, 24px, line-height 1.2): the page heading and the due-slip title.
-- **Headline** (600, 18px, line-height 1.3): panel headings.
-- **Body** (400, 14px, line-height 1.5): sentences. The finding line stays within about 62 characters.
-- **Label** (500, 12px): field names and meta lines. Nothing in the interface is set below 12px.
+Interface text is never set below 12px. The one exception is the two-letter initials inside the 20px brand avatar, which are 10px glyphs on a coloured tile.
 
-### Named Rules
-
-**The Sentence Rule.** Status, empty states, and errors are full sentences. Headers are not uppercase and are not tracked out.
+**The Sentence Rule.** Status, empty states, and errors are full sentences. Headers are not uppercase and not tracked out. There is no eyebrow or kicker above a heading.
 
 ## Layout
 
-The desk is a two-column shell. The sidebar is 230px. The canvas uses 24px of page padding and a 24px gap. At 1440px the content row is a flexible main column plus a 384px rail.
+- **Desktop shell:** a 248px rail and a fluid canvas, capped at 1360px, with 24px padding and gaps.
+- **Today's run:** a page head with the date and the finding sentence, four KPI links, then a main column (the due slip, the week chart, "After the next slot") beside a 360px rail ("Needs a retry", "Simulated recently").
+- **Calendar:** a toolbar with icon arrows, Today, and the range title on the left and a Day, Week, Month segmented switch on the right. Week view is a bordered seven-column board. Month view is a hairline grid.
+- **Composer:** a form column and a sticky preview column. A sticky run bar holds the slot and every action.
+- **Lists:** tables sit in a flush panel with a sunken header row.
 
-The count row is one divided surface, not three cards. The due slip sits first in the main stack. Below it, the week chart, then the rest of the scheduled list. The rail holds failed simulations and recent simulated results.
+### Breakpoints
 
-At 960px and below, the sidebar becomes a full-screen sheet under a 48px top bar. The main column is `inert` while that sheet is open. The desk, composer, week chart, and counts stack in one column.
+- **≤1180px:** the KPIs drop to two columns, the dashboard to one column, and the composer preview to 340px.
+- **≤960px:** a 56px top bar with the mark, the scoped brand, and New post. A bottom tab bar holds Today, Calendar, Posts, Library, and More. More opens the full rail as a sheet, with the main column `inert`. The week view scrolls sideways with snap points. The composer run bar stops being sticky and sits at the end of the form. Controls grow to 40px, and to 44px on coarse pointers.
+- **≤640px:** compact KPIs, a 76px date column in the slip, month events as coloured dots, three-up file pickers, and tables that scroll inside their panel at a 640px minimum width.
 
 ## Elevation & Depth
 
-Surfaces are flat. Depth comes from the ground, the white sheet, and the manila card. There is no resting drop shadow. Images use a 1px inset hairline (`oklch(0 0 0 / 0.1)`) so a pale swatch stays visible on white.
+Panels are flat. Depth comes from the dark rail, the white sheet, the ground, and the manila slip. One shadow token exists:
 
-Press feedback is a scale to 0.96 for 150ms, ease-out, and only when the user has not asked for reduced motion. Transitions name `transform` and `background-color`. They do not animate layout.
+- **Float** (`0 8px 24px -6px rgb(15 43 49 / 0.18), 0 2px 6px rgb(15 43 49 / 0.08)`): the sticky run bar, the skip link, and other overlays.
+
+Focus rings, selected tiles, and the active brand card use a ring (`0 0 0 2px` or `3px` of accent track, or `1px` of accent), not a drop shadow. Images use a 1px inset hairline (`oklch(0 0 0 / 0.1)`) so a pale swatch stays visible on white.
+
+## Motion
+
+- **Press:** buttons scale to 0.96 over 150ms, ease-out.
+- **State changes:** transitions name their properties (`background-color`, `border-color`, `color`, `transform`) and run 150ms ease-out. Layout is never animated.
+- **Hover:** gated behind `@media (hover: hover)` so touch devices do not get sticky hovers.
+- **Skeletons:** loading rows pulse in opacity between 1 and 0.45.
+- **Reduced motion:** press scaling and the skeleton pulse switch off.
 
 ## Shapes
 
-Cards and panels use an 8px radius. Controls, stamps, and notices use 6px. The stamp is a bordered label, width to its words, not a filled pill. The pocket mark in the sidebar is a simple outlined card, not an icon in a tinted square.
+- **Cards, panels, the due slip, preview frames:** 10px.
+- **Controls, notices, the stamp:** 6px.
+- **Small marks (network icons, swatches):** 4px or 5px.
+- **Pills (badges, counts, tabs, position indicators):** 999px.
 
 ## Components
 
+### Rail
+
+Top to bottom: the pocket mark and "Personal desk", a "Working in" brand switcher (a styled select with the brand avatar and a chevron), a full-width New post button, six navigation rows with 18px icons, a simulation note with a pulse dot, and a user row with a sign-out icon button. The active row is a 10% white wash with white text.
+
 ### Buttons
 
-- **Shape:** 6px radius, 40px minimum height, 14px horizontal padding.
-- **Primary:** ink background, white label. Used for the one next action, such as New post or Sign in.
-- **Secondary:** white background, control-border stroke, ink label.
-- **Focus:** 2px stamp-blue outline, 2px offset, on `:focus-visible` only.
-- **Disabled:** 45% opacity.
+- **Primary:** accent fill, white label. One per view, for the next action.
+- **Secondary:** white, control-border stroke.
+- **Ghost and icon buttons:** no fill at rest. Icon-only buttons carry a screen-reader label.
+- **Danger:** negative ink with no fill at rest and a negative-soft wash on hover. Deleting a brand or a file asks for confirmation first.
+- **Focus:** a 2px accent outline at 2px offset on `:focus-visible`.
 - Publishing actions are named Run simulation, Schedule simulation, or Try live publish. They do not say Publish when the provider is simulated.
 
-### Cards / Containers
+### KPI links
 
-- **Panels:** white, 1px `#d5e0e3`, 8px radius, 16px padding.
-- **Due slip:** manila `#f4e7cf`, edge `#e3d3b0`, 24px padding, at least 280px tall. One slip per screen.
-- **Counts:** a single white row split by hairline rules.
+Four white cards with a status dot, a label, a 28px figure, and a meta sentence. Each one links to the filtered list behind it. On hover, the border turns accent.
 
-### Inputs / Fields
+### Due slip (signature)
 
-- **Style:** white, 1px `#6d8288`, 6px radius, 16px text, 40px minimum height.
-- **Focus:** the same 2px stamp outline as buttons.
-- **Error:** negative ink, in a sentence, not color alone.
+A horizontal manila slip. On the left is a white date block with the weekday, the 40px day, the month, and a time pill. In the middle are the title, a two-line caption, the brand chip, the networks, and the stamp: a bordered label whose word is the status and whose second line says whether anything was sent. On the right is the first media thumbnail with a file count. With no slot, it becomes a dashed empty slip with a "Schedule a post" button. There is one slip per screen.
 
-### Navigation
+### Week chart
 
-The sidebar lists Today's run, Calendar, Posts, Library, Brands, and History in 14px. The active row uses the soft stamp wash and stamp ink. Only the icon turns stamp blue. The persistent status line in the sidebar says simulated publishing is on. It is not an eyebrow above the page title.
+Each day's bar shows its count above it, and today's column is highlighted. A failed share is drawn as a red segment at the base of the bar and named in the legend sentence. A screen-reader table carries the same numbers.
 
-On a narrow screen the same list opens from the top bar. Escape closes it.
+### Status badge, network marks, brand chips
 
-### Due-date stamp
+- **Badge:** a pill with a dot and a word, using the status table above.
+- **Network mark:** a 20px tinted tile with the network glyph (lucide for Facebook, Instagram, and LinkedIn, and an authored stroke SVG for TikTok). When a post targets several accounts, the marks sit in a row 4px apart.
+- **Brand chip:** the avatar and the brand name in 12px.
 
-The stamp sits on the manila card. Its word is the status. Its second line says whether anything was sent. A scheduled simulation reads "This slot will be simulated. Nothing is sent."
+### Calendar events
+
+Week events are tinted cards in the status tone, showing time, title, networks, brand, and status. Month events are compact chips with a dot, a time, and a title, and a "N more" button opens the day view. On phones, month events collapse to dots.
+
+### Composer
+
+- **Format:** a row of radio chips.
+- **Caption:** a counter checked against the tightest limit among the selected accounts.
+- **Files:** a grid of thumbnail tiles with a checkbox and an order number.
+- **Accounts:** a grid of tiles with the network mark, the handle, and the reason a tile is disabled.
+- **Issues:** a list with icons, in sentences.
+- **Run bar:** the slot input and the actions, with a note that a simulation does not send the post.
+
+### Previews
+
+Each selected account gets a frame drawn like that network's own post. A strip at the top says "Preview only. Not sent to {network}." Below it are the author row with the avatar, name, and handle, then a stage whose aspect ratio matches the network (square for Instagram, 4:3 for Facebook and LinkedIn, 9:16 for tall formats). The stage has arrow buttons, a position pill, and dots, followed by the network's action icons, the caption, and a limit bar.
+
+### Inputs
+
+White fields with a control-border stroke, 6px radius, 36px height, and 14px text. On touch devices they grow to 44px with 16px text, so iOS does not zoom on focus. On focus, the border turns accent and gains a 3px accent-track halo. Errors are sentences in negative ink.
+
+### Empty, loading, and error states
+
+- **Empty:** an icon, a title, a sentence, and the next action.
+- **Loading:** skeleton rows with `aria-busy`, so an empty state never flashes before the data arrives.
+- **Error:** a negative notice with `role="alert"`.
+
+### Login
+
+A split layout. On the left, a rail-coloured panel holds a tilted sample due slip and one line of copy. On the right is the form with a full-width primary button. On phones the panel is hidden and the mark is shown above the form.
 
 ## Do's and Don'ts
 
 ### Do
 
-- **Do** keep stamp blue to the stamp, the chart, and the active icon.
-- **Do** keep manila on the next-slot card only.
+- **Do** keep manila for the due slip and the Scheduled status.
+- **Do** show every status as a dot and a word in a pill.
+- **Do** use network marks and brand avatars to make rows scannable.
 - **Do** say "Simulated success" or "Simulated failure" and that nothing was sent.
-- **Do** use DM Sans at the sizes above, with tabular figures for counts and times.
-- **Do** leave panels flat, with the quiet border `#d5e0e3`.
+- **Do** keep panels white and flat, with hairline borders.
+- **Do** give every list a skeleton, an empty state with an action, and an error notice.
+- **Do** gate hover styles behind `(hover: hover)` and name transitioned properties.
 
 ### Don't
 
 - **Don't** label a simulation as Published, or write "Published to Facebook", "Posted to Instagram", or "Live on TikTok".
 - **Don't** put a kicker or eyebrow above a heading.
-- **Don't** use emoji as icons, gradient text, glass, or a hard offset shadow.
-- **Don't** nest a card inside a card, or turn the count row into three hero metrics.
-- **Don't** saturate the sidebar, put icons in tinted squares, or draw a sparkline.
-- **Don't** set interface text below 12px, or a page title at 32px.
+- **Don't** use emoji or unicode glyphs as icons, gradient fills, gradient text, or glass cards.
+- **Don't** put a drop shadow on a resting panel. Shadows are for overlays and sticky bars.
+- **Don't** use a border-left accent stripe thicker than 1px.
+- **Don't** set interface text below 12px, or a page title above 24px.
+- **Don't** nest a card inside a card.

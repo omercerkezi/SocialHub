@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { Trash2, Upload } from "lucide-react";
 import { api, fileUrl } from "../api.js";
+import { BrandChip, EmptyState, ErrorNote, SkeletonRows } from "../components/ui.jsx";
 import { useDesk } from "../shell.jsx";
 import { usePage } from "./usePage.js";
 
@@ -9,7 +11,7 @@ export function MediaLibrary() {
   const [uploadBrand, setUploadBrand] = useState(brandId || "");
   const [altText, setAltText] = useState("");
   const [file, setFile] = useState(null);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(null);
   const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
 
@@ -19,9 +21,13 @@ export function MediaLibrary() {
 
   useEffect(() => {
     const query = brandId ? `?brandId=${brandId}` : "";
+    setItems(null);
     api(`/media${query}`)
       .then(setItems)
-      .catch((err) => setError(err.message));
+      .catch((err) => {
+        setError(err.message);
+        setItems([]);
+      });
   }, [brandId]);
 
   async function upload(event) {
@@ -47,27 +53,35 @@ export function MediaLibrary() {
     }
   }
 
-  async function remove(id) {
+  async function remove(item) {
+    if (!window.confirm(`Delete ${item.originalName}? Posts that use it will lose this file.`)) return;
     setError("");
     try {
-      await api(`/media/${id}`, { method: "DELETE" });
-      setItems((current) => current.filter((item) => item.id !== id));
+      await api(`/media/${item.id}`, { method: "DELETE" });
+      setItems((current) => current.filter((entry) => entry.id !== item.id));
     } catch (err) {
       setError(err.message);
     }
   }
 
+  const brandName = (id) => brands.find((brand) => brand.id === id)?.name;
+
   return (
     <div className="canvas">
-      <div className="title-row">
+      <div className="page-head">
         <div>
           <h1 ref={heading} tabIndex={-1}>
             Library
           </h1>
-          <p className="finding">Files for posts. Sample swatches are generated, not photographs.</p>
+          <p className="finding">
+            {items ? `${items.length} ${items.length === 1 ? "file" : "files"}. ` : ""}Sample swatches are generated, not photographs.
+          </p>
         </div>
       </div>
-      <form className="upload" onSubmit={upload}>
+      <form className="panel upload" onSubmit={upload}>
+        <span className="upload-icon" aria-hidden="true">
+          <Upload size={18} />
+        </span>
         <label className="field">
           <span>Brand</span>
           <select value={uploadBrand} onChange={(event) => setUploadBrand(event.target.value)} required>
@@ -79,7 +93,7 @@ export function MediaLibrary() {
             ))}
           </select>
         </label>
-        <label className="field">
+        <label className="field file-field">
           <span>File</span>
           <input
             type="file"
@@ -96,23 +110,46 @@ export function MediaLibrary() {
           {pending ? "Adding" : "Add file"}
         </button>
       </form>
-      {error ? <p className="form-error">{error}</p> : null}
-      <ul className="library">
-        {items.map((item) => (
-          <li key={item.id}>
-            {item.kind === "image" ? <img src={fileUrl(item.id)} alt={item.altText || item.originalName} /> : <video src={fileUrl(item.id)} controls />}
-            <p>{item.originalName}</p>
-            <p className="meta">
-              {item.sample ? "Sample · " : ""}
-              {item.kind} · {Math.ceil(item.byteSize / 1024)} KB
-            </p>
-            <button type="button" className="text-button" onClick={() => remove(item.id)}>
-              Delete file
-            </button>
-          </li>
-        ))}
-      </ul>
-      {items.length === 0 ? <p className="meta">No files for this filter.</p> : null}
+      <ErrorNote>{error}</ErrorNote>
+      {items === null ? (
+        <div className="panel">
+          <SkeletonRows rows={3} label="Loading files" />
+        </div>
+      ) : items.length === 0 ? (
+        <div className="panel">
+          <EmptyState title="No files for this filter.">Add a JPEG, PNG, WebP, GIF, or a short video above.</EmptyState>
+        </div>
+      ) : (
+        <ul className="library">
+          {items.map((item) => (
+            <li key={item.id} className="media-card">
+              <div className="media-stage">
+                {item.kind === "image" ? <img src={fileUrl(item.id)} alt={item.altText || item.originalName} loading="lazy" /> : <video src={fileUrl(item.id)} controls />}
+                {item.sample ? <span className="media-tag">Sample</span> : null}
+              </div>
+              <div className="media-body">
+                <div className="media-text">
+                  <p className="media-name" title={item.originalName}>
+                    {item.originalName}
+                  </p>
+                  <p className="meta">
+                    {item.kind} · {Math.ceil(item.byteSize / 1024)} KB
+                  </p>
+                  {brandName(item.brandId) && !brandId ? (
+                    <div className="cell-sub">
+                      <BrandChip name={brandName(item.brandId)} />
+                    </div>
+                  ) : null}
+                </div>
+                <button type="button" className="icon-button ghost danger" onClick={() => remove(item)}>
+                  <Trash2 size={16} aria-hidden="true" />
+                  <span className="sr-only">Delete {item.originalName}</span>
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
