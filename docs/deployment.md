@@ -15,7 +15,9 @@ Dokploy can deploy this repository from `docker-compose.yml`. The compose file b
 4. Keep the `media` volume. It holds the library.
 5. Point a phone build at `https://<your-host>` with `EXPO_PUBLIC_API_URL`.
 
-The API container runs migrations and the sweeper on boot. `SEED=true` inserts Furnio and Smart Leads only when the database has no owner yet. Set `SEED=false` after the first boot if you do not want that fixture refreshed on an empty database. Seed never runs over an existing owner.
+The API container creates any missing tables (`CREATE TABLE IF NOT EXISTS`; there are no migrations yet) and starts the publish worker and sweeper on boot. With `SEED=true` (the default), it creates the owner from `ADMIN_EMAIL` and `ADMIN_PASSWORD` if no user with that email exists, and inserts the Furnio and Smart Leads sample data if the `brands` table is empty. It never changes an existing user. Set the admin values before the first boot, and set `SEED=false` afterwards if you do not want sample data recreated on an empty database.
+
+`WEB_ORIGIN` is accepted in the environment but is not read by the API yet. CORS currently allows any origin. See `docs/PROJECT_STATUS.md` for the remaining production work.
 
 ## Local
 

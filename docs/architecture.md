@@ -1,5 +1,7 @@
 # Architecture
 
+Short reference. The full walkthrough, with code traces, is in [`DEVELOPER_GUIDE.md`](DEVELOPER_GUIDE.md). Known gaps are in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
+
 SocialHub is an npm workspace monorepo for one owner. Brands, posts, media, and the calendar live in PostgreSQL. Network calls go through a provider port. Until credentials exist, that port is a simulator.
 
 ## Layout
